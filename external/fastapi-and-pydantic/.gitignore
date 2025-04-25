@@ -1,0 +1,7 @@
+# Ignore virtual environment
+fastapivenv/
+
+# Ignore environment variable files
+.env
+
+
