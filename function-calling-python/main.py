@@ -4,7 +4,7 @@ import json
 from dotenv import load_dotenv
 import warnings
 from urllib3.exceptions import NotOpenSSLWarning
-import logging
+from logging_config import logging
 
 # Set up 
 

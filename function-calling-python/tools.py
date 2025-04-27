@@ -1,5 +1,6 @@
 import yfinance as yf
 import json
+from logging_config import logging
 
 def get_response(question):
     return json.dumps({"question": question})
@@ -18,8 +19,10 @@ def mutual_fund(fund_symbol):
         # Retrieve the required information
         fund_info = fund_data.info
         historical_data = fund_data.history(period="1y")  # Get 1-year historical data
-        # print(historical_data.head())
-        # print(historical_data.tail())
+       
+        logging.info("Historical data head:\n%s", historical_data.head())
+        logging.info("Historical data tail:\n%s", historical_data.tail())
+
         if not fund_info or historical_data.empty:
             return json.dumps({"error": f"No data found for symbol '{fund_symbol}'"})
 
