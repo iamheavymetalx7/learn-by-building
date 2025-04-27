@@ -1,0 +1,6 @@
+2025-04-27 15:30:44,812 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-27 15:30:44,818 - INFO - Response message: ChatCompletionMessage(content=None, role='assistant', executed_tools=None, function_call=None, reasoning=None, tool_calls=[ChatCompletionMessageToolCall(id='call_s23m', function=Function(arguments='{"fund_symbol":"UTINEXT50.BO"}', name='mutual_fund'), type='function')])
+2025-04-27 15:30:44,818 - INFO - Tool calls: [ChatCompletionMessageToolCall(id='call_s23m', function=Function(arguments='{"fund_symbol":"UTINEXT50.BO"}', name='mutual_fund'), type='function')]
+2025-04-27 15:30:45,447 - INFO - Calling tool: mutual_fund with arguments: {'fund_symbol': 'UTINEXT50.BO'}
+2025-04-27 15:30:45,447 - INFO - Response: {"fund_name": "UTI Mutual Fund - UTI-Nifty Next 50 Exchange Traded Fund", "symbol": "UTINEXT50.BO", "nav": "N/A", "1_year_return": "5.00%", "category": "N/A"}
+2025-04-27 15:30:45,808 - INFO - HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
