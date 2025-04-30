@@ -1,0 +1,18 @@
+{
+  "type": "function",
+  "function": {
+    "name": "ask_user",
+    "description": "Prompts the user for input and returns their response.\n\nThis function displays the provided `input_prompt` and waits for the user to enter a message.\nThe user's input is then returned as a string.\n\nReturns:\n    The user's input message.",
+    "parameters": {
+      "properties": {
+        "input_prompt": {
+          "description": "The prompt to display to the user, instructing them on what information to provide.",
+          "title": "Input Prompt",
+          "type": "string"
+        }
+      },
+      "required": ["input_prompt"],
+      "type": "object"
+    }
+  }
+}

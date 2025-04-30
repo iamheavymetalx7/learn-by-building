@@ -1,0 +1,28 @@
+{
+  "type": "function",
+  "function": {
+    "name": "book_table",
+    "description": "Books a table for a given time and reservation name if the slot is available.\n\nThis function checks the availability of a specific table at the provided time.\nIf the table is available, the booking is added to the `bookings.csv` file. \nIf the table is already booked, it returns a failure message.\n\nReturns:\n    Returns `True` if the booking was successful, `False` otherwise.",
+    "parameters": {
+      "properties": {
+        "table_name": {
+          "description": "The name of the table to book (e.g., \"Table 1\").",
+          "title": "Table Name",
+          "type": "string"
+        },
+        "time": {
+          "description": "The time of the booking in the format \"HH:MM\" (e.g., \"19:00\").",
+          "title": "Time",
+          "type": "string"
+        },
+        "reservation_name": {
+          "description": "The name of the person making the reservation.",
+          "title": "Reservation Name",
+          "type": "string"
+        }
+      },
+      "required": ["table_name", "time", "reservation_name"],
+      "type": "object"
+    }
+  }
+}

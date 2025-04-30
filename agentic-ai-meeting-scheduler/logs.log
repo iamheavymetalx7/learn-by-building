@@ -1,0 +1,36 @@
+(.venv) ➜  agentic-ai-meeting-scheduler git:(main) ✗ python3 booking_bot.py
+💬 Tell me about the time/seats you'd like to book.
+👉 Enter Message: 4pm
+✨ System Response: ChatCompletionMessage(content=None, role='assistant', executed_tools=None, function_call=None, reasoning=None, tool_calls=[ChatCompletionMessageToolCall(id='call_mb5t', function=Function(arguments='{"input_prompt":"What is your reservation name?"}', name='ask_user'), type='function'), ChatCompletionMessageToolCall(id='call_c3f0', function=Function(arguments='{"input_prompt":"How many people are in your party?"}', name='ask_user'), type='function'), ChatCompletionMessageToolCall(id='call_51zc', function=Function(arguments='{"input_prompt":"You mentioned 4pm. Is that correct?"}', name='ask_user'), type='function')])
+
+Tool use Block: id='call_mb5t' input='{"input_prompt":"What is your reservation name?"}' name='ask_user' type='tool_use'
+💬 What is your reservation name?
+👉 Enter Message: nk
+🛠️ Using Tool [ask_user]: nk
+
+✨ System Response: ChatCompletionMessage(content=None, role='assistant', executed_tools=None, function_call=None, reasoning=None, tool_calls=[ChatCompletionMessageToolCall(id='call_k2bz', function=Function(arguments='{"input_prompt":"How many people will be in your party?"}', name='ask_user'), type='function')])
+
+Tool use Block: id='call_k2bz' input='{"input_prompt":"How many people will be in your party?"}' name='ask_user' type='tool_use'
+💬 How many people will be in your party?
+👉 Enter Message: 4
+🛠️ Using Tool [ask_user]: 4
+
+✨ System Response: ChatCompletionMessage(content=None, role='assistant', executed_tools=None, function_call=None, reasoning=None, tool_calls=[ChatCompletionMessageToolCall(id='call_qkfa', function=Function(arguments='{"party_size":4,"time":"16:00"}', name='get_booking_slots'), type='function')])
+
+Tool use Block: id='call_qkfa' input='{"party_size":4,"time":"16:00"}' name='get_booking_slots' type='tool_use'
+1900-01-01 16:00:00 1900-01-01 15:00:00 1900-01-01 17:00:00 printing the times
+🛠️ Using Tool [get_booking_slots]: ['🕒 15:00 - table5 (4p)', '🕒 15:00 - table6 (4p)', '🕒 15:00 - table7 (4p)', '🕒 15:00 - table8 (4p)', '🕒 17:00 - table5 (4p)', '🕒 17:00 - table6 (4p)', '🕒 17:00 - table7 (4p)', '🕒 17:00 - table8 (4p)']
+
+✨ System Response: ChatCompletionMessage(content=None, role='assistant', executed_tools=None, function_call=None, reasoning=None, tool_calls=[ChatCompletionMessageToolCall(id='call_fag6', function=Function(arguments='{"input_prompt":"Which time and table would you like to book? (e.g., \'15:00 - table5\')"}', name='ask_user'), type='function')])
+
+Tool use Block: id='call_fag6' input='{"input_prompt":"Which time and table would you like to book? (e.g., \'15:00 - table5\')"}' name='ask_user' type='tool_use'
+💬 Which time and table would you like to book? (e.g., '15:00 - table5')
+👉 Enter Message: 15:00 - table5
+🛠️ Using Tool [ask_user]: 15:00 - table5
+
+✨ System Response: ChatCompletionMessage(content=None, role='assistant', executed_tools=None, function_call=None, reasoning=None, tool_calls=[ChatCompletionMessageToolCall(id='call_p16a', function=Function(arguments='{"reservation_name":"nk","table_name":"table5","time":"15:00"}', name='book_table'), type='function')])
+
+Tool use Block: id='call_p16a' input='{"reservation_name":"nk","table_name":"table5","time":"15:00"}' name='book_table' type='tool_use'
+🛠️ Using Tool [book_table]: ✅ Booking Success: table5 at 15:00 for nk
+
+✨ System Response: ChatCompletionMessage(content='Your table is booked! You have successfully reserved table 5 at 15:00 for nk.', role='assistant', executed_tools=None, function_call=None, reasoning=None, tool_calls=None)

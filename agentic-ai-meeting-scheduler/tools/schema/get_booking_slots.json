@@ -1,0 +1,23 @@
+{
+  "type": "function",
+  "function": {
+    "name": "get_booking_slots",
+    "description": "Retrieves available booking slots for a given party size within a 1-hour time range around the provided time.\n\nThis function reads the booking data from a CSV file and checks for available tables that match the requested party size\nwithin a 1-hour window before and after the given time. The results are returned as a formatted string with available\nslots listed by time.\n\nReturns:\n    A formatted string containing the available time slots and tables that can accommodate the given party size.\nIf no slots are available, the returned string will be empty.",
+    "parameters": {
+      "properties": {
+        "party_size": {
+          "description": "The number of people in the party. The function will find tables that can accommodate at least this size.",
+          "title": "Party Size",
+          "type": "integer"
+        },
+        "time": {
+          "description": "The time for which the booking is being requested, in \"HH:MM\" format (e.g., \"19:00\").",
+          "title": "Time",
+          "type": "string"
+        }
+      },
+      "required": ["party_size", "time"],
+      "type": "object"
+    }
+  }
+}
