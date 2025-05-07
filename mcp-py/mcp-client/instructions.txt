@@ -1,0 +1,3 @@
+run the .env of this current folder mcp-client
+
+and then run uv run client.py '/Users/nitishkumar/Documents/learn-by-building/mcp-py/weather/weather.py'
