@@ -1,13 +1,12 @@
 [project]
-name = "mcp-client"
+name = "mcp-python-implementation"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "anthropic>=0.47.2",
-    "groq>=0.24.0",
-    "httpx>=0.28.1",
+    "fastembed>=0.6.1",
+    "langchain-groq>=0.3.2",
+    "mcp-use>=1.2.8",
     "mcp[cli]>=1.7.1",
-    "python-dotenv>=1.1.0",
 ]

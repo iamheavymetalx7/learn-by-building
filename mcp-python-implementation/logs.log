@@ -1,0 +1,78 @@
+mcp-python-implementation) ➜  mcp-python-implementation git:(rough-branch) ✗ uv run server/client.py
+Initializing chat...
+
+===== Interactive MCP Chat =====
+Type 'exit' or 'quit' to end the conversation
+Type 'clear' to clear conversation history
+==================================
+
+
+You: weather alert for newyork
+
+Assistant: [05/07/25 22:51:02] INFO     Processing request of type ListToolsRequest                                                server.py:534
+                    INFO     Processing request of type ListToolsRequest                                                server.py:534
+[05/07/25 22:51:03] INFO     Processing request of type CallToolRequest                                                 server.py:534
+                    INFO     HTTP Request: GET https://api.weather.gov/alerts/active/area/NY "HTTP/1.1 200 OK"        _client.py:1740
+Here are the current **Flood Warnings** for New York state (NY), issued by the National Weather Service:
+
+---
+
+### **1. Flood Warning: Tompkins County (Cayuga Lake at Ithaca)**  
+- **Severity**: Severe  
+- **Impacts**: Minor flooding affecting shoreline areas, potential road closures near the shore.  
+- **Details**:  
+  - **Stage**: 383.4 feet (above flood stage of 383.5 ft).  
+  - **Forecast**: Rising to 383.9 feet by Friday evening.  
+  - **Timeframe**: Until further notice.  
+- **Action**: Avoid flooded areas and report observed flooding to authorities.  
+
+---
+
+### **2. Flood Warning: Ulster County (Esopus Creek at Mount Marion)**  
+- **Severity**: Severe  
+- **Impacts**: Roads (Alta, River, Lawrence Roads) closed in Conklin. No homes flooded.  
+- **Details**:  
+  - **Stage**: 20.2 feet (above flood stage of 20.0 ft).).  
+  - **Forecast**: To drop to 18.8 feet by Friday evening.  
+- **Timeframe**: Until this evening.  
+
+---
+
+### **3. Flood Warning: Cortland County (Tioughnioga River at Cortland)**  
+- **Severity**: Severe  
+- **Impacts**: Road closures (e.g., Kellogg Road south of Cortland).  
+- **Details**:  
+  - **Stage**: 8.0 feet (flood stage).  
+  - **Forecast**: Crest at 8.4 feet tonight, then subside by Thursday.  
+- **Action**: Do **NOT** drive through flooded areas.  
+
+---
+
+### **4. Flood Warning: Broome & Susquehanna Counties (Susquehanna River)**  
+- **Areas Affected**: Vestal, Endwell, and Barton.  
+- **Impacts**:  
+  - Cellars flooding on Argonne Drive (Vestal).  
+  - Roads like Valley Park may flood.  
+- **Details**:  
+  - **Stage**: 18.5–12.5 feet (above flood stages).  
+  - **Forecast**: Fluctuations due to rainfall, peaking again late Friday.  
+
+---
+
+### **5. Flood Warning: Tioga & Bradford Counties (Susquehanna River at Waverly/Sayre)**  
+- **Severity**: Severe  
+- **Impacts**: Lowland flooding in NY and PA towns (Barton, Nichols, Athens Township).  
+- **Details**:  
+  - **Stage**: 12.4 feet (near flood stage of 13.0 ft.  
+  - **Forecast**: Crest at 13.1 feet tonight, then drop below flood stage.  
+
+---
+
+### **General Safety Instructions**:  
+- Avoid flooded roads and do **not** drive around barricades.  
+- Stay away from riverbanks.  
+- Report flooding to local authorities.  
+
+For full details, visit [NWS Flood Safety](https://www.weather.gov/safety/flood).  
+
+Alerts updated as of [current time]. Check [weather.gov](https://www.weather.gov) for real-time updates.
