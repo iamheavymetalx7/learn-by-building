@@ -6,7 +6,7 @@ from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 import groq
 from dotenv import load_dotenv
-
+import os
 load_dotenv()  # load environment variables from .env
 
 class MCPClient:
@@ -14,7 +14,12 @@ class MCPClient:
         # Initialize session and client objects
         self.session: Optional[ClientSession] = None
         self.exit_stack = AsyncExitStack()
-        self.groq = groq.Client(api_key="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")
+        api_key = os.getenv("GROQ_API_KEY")
+
+        if not api_key:
+            raise ValueError("GROQ_API_KEY not set in environment variables")
+
+        self.groq = groq.Client(api_key=api_key)
     # methods will go here
     
     async def connect_to_server(self, server_script_path: str):
