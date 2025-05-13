@@ -1,4 +1,7 @@
 
+
+## pseudo code - wrong code
+## do not look into this - wrong implementation
 def get_weather(location: str, unit: str = "celsius") -> dict:
     dummy_data = {
         "Chennai": {"celsius": 33, "fahrenheit": 91.4},
