@@ -1,0 +1,26 @@
+# Overview
+
+This project provides an implementation of a weather forecasting and alert system using the Model Context Protocol (MCP). It includes both client and server components, as well as an alternative implementation without MCP.
+
+## Key Components
+
+1. **Client**  
+   - Contains methods for invoking the LLM (Large Language Model) and managing conversation parameters.  
+   - Acts as the interface for sending queries to the server.
+
+2. **Server**  
+   - Provides an API to fetch weather forecasts or alerts.  
+   - Accepts a two-letter state symbol (e.g., "CA" for California) in the USA to return weather information based on the user's request.
+
+3. **Groq Folder**  
+   - Contains the same implementation as above but without using MCP.
+
+## How to Get Started
+
+1. Refer to the [Quickstart Resources](https://github.com/modelcontextprotocol/quickstart-resources/tree/main) for the original implementation details.  
+2. To run the server and pass queries via the client, follow the instructions provided in the `instructions.txt` file located inside the `mcp-client` folder.
+
+## Notes
+
+- Ensure you have the necessary dependencies installed before running the project.  
+- For troubleshooting or further customization, consult the documentation in the respective folders.

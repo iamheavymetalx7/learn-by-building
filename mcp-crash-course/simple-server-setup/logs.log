@@ -1,0 +1,61 @@
+// logs from running client-stdio.py and server.py
+// no need to start server.py when running in stdio mode
+
+(crash-course) ➜  3-simple-server-setup git:(main) ✗ python3 client-stdio.py
+[05/14/25 21:00:44] INFO     Processing request of type ListToolsRequest                         server.py:534
+Available tools:
+  - add: Add two numbers together
+                    INFO     Processing request of type CallToolRequest                          server.py:534
+2 + 3 = 5
+
+
+// logs from client-sse.py and server.py
+// need to start server.py when running in sse mode
+Make sure:
+1. The server is running before running this script.
+2. The server is configured to use SSE transport.
+3. The server is listening on port 8050.
+
+To run the server:
+python server.py
+
+
+//server logs
+(crash-course) ➜  3-simple-server-setup git:(main) ✗ python server.py
+Running server with SSE transport
+INFO:     Started server process [67634]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8050 (Press CTRL+C to quit)
+INFO:     127.0.0.1:62307 - "GET /sse HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62309 - "POST /messages/?session_id=6b41fd07900240eab4459d9653e9141d HTTP/1.1" 202 Accepted
+INFO:     127.0.0.1:62309 - "POST /messages/?session_id=6b41fd07900240eab4459d9653e9141d HTTP/1.1" 202 Accepted
+INFO:     127.0.0.1:62309 - "POST /messages/?session_id=6b41fd07900240eab4459d9653e9141d HTTP/1.1" 202 Accepted
+[05/14/25 21:04:33] INFO     Processing request of type ListToolsRequest                  server.py:534
+INFO:     127.0.0.1:62309 - "POST /messages/?session_id=6b41fd07900240eab4459d9653e9141d HTTP/1.1" 202 Accepted
+                    INFO     Processing request of type CallToolRequest                   server.py:534
+
+
+
+// client-sse.py logs
+(crash-course) ➜  3-simple-server-setup git:(main) ✗ python3 client-sse.py 
+Available tools:
+  - add: Add two numbers together
+2 + 3 = 5
+
+
+
+
+// more information
+If we run in client-sse mode, we see that we are usig API to /sse.
+The /sse path you're seeing here:
+```async with sse_client("http://localhost:8050/sse") as (read_stream, write_stream)```
+is automatically used by the FastMCP server when you run it in SSE transport mode.
+
+What's happening:
+The FastMCP framework (from mcp.server.fastmcp) internally exposes a Server-Sent Events (SSE) API at `/sse`, which acts as the communication endpoint for the client to talk to the server over a long-lived HTTP connection.
+
+TL;DR
+- The /sse route is provided by the MCP server internally when using transport="sse"
+- You don’t need to manually define it
+- The client is expected to connect to it for streaming communication over HTTP

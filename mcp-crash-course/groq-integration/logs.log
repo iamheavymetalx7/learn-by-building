@@ -1,0 +1,15 @@
+(crash-course) ➜  4-groq-integration git:(main) ✗ python3 client.py
+[05/15/25 22:02:50] INFO     Processing request of type ListToolsRequest server.py:534
+
+Connected to server with tools:
+  - get_knowledge_base: Retrieve the entire knowledge base as a formatted string.
+
+    Returns:
+        A formatted string containing all Q&A pairs from the knowledge base.
+    
+
+Query: What is our company's vacation policy?
+                    INFO     Processing request of type ListToolsRequest server.py:534
+                    INFO     Processing request of type CallToolRequest  server.py:534
+
+Response: According to our company's knowledge base, full-time employees are entitled to 20 paid vacation days per year. Vacation days can be taken after completing 6 months of employment. Unused vacation days can be carried over to the next year up to a maximum of 5 days. Vacation requests should be submitted at least 2 weeks in advance through the HR portal.

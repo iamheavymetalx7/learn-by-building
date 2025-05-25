@@ -8,7 +8,7 @@
         "mcp[cli]",
         "mcp",
         "run",
-        "/Users/nitishkumar/Documents/learn-by-building/mcp-py/server/weather.py"
+        "/Users/nitishkumar/Documents/learn-by-building/mcp-python-implementation/server/weather.py"
       ]
     }
   }

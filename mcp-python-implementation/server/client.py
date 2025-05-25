@@ -10,7 +10,6 @@ async def run_memory_chat():
     """Run a chat using MCPAgent's built-in conversation memory."""
     # Load environment variables for API keys
     load_dotenv()
-    print(os.getenv("GROQ_API_KEY"))
     os.environ["GROQ_API_KEY"]=os.getenv("GROQ_API_KEY")
 
     # Config file path - change this to your config file
@@ -20,7 +19,7 @@ async def run_memory_chat():
 
     # Create MCP client and agent with memory enabled
     client = MCPClient.from_config_file(config_file)
-    llm = ChatGroq(model= "llama3-70b-8192")
+    llm = ChatGroq(model="qwen-qwq-32b")
 
     # Create agent with memory_enabled=True
     agent = MCPAgent(

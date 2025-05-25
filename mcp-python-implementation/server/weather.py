@@ -1,14 +1,14 @@
-from typing import Any
+import os
 import httpx
+from typing import Any
 from mcp.server.fastmcp import FastMCP
 
 # Initialize FastMCP server
-mcp = FastMCP("weather")
+mcp = FastMCP("weather", use_stdio=True)  # Ensure stdio is selected
 
 # Constants
 NWS_API_BASE = "https://api.weather.gov"
 USER_AGENT = "weather-app/1.0"
-
 
 async def make_nws_request(url: str) -> dict[str, Any] | None:
     """Make a request to the NWS API with proper error handling."""
@@ -16,14 +16,14 @@ async def make_nws_request(url: str) -> dict[str, Any] | None:
         "User-Agent": USER_AGENT,
         "Accept": "application/geo+json"
     }
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(timeout=60.0) as client:
         try:
             response = await client.get(url, headers=headers, timeout=30.0)
             response.raise_for_status()
             return response.json()
         except Exception:
             return None
-        
+
 def format_alert(feature: dict) -> str:
     """Format an alert feature into a readable string."""
     props = feature["properties"]
@@ -42,6 +42,8 @@ async def get_alerts(state: str) -> str:
     Args:
         state: Two-letter US state code (e.g. CA, NY)
     """
+    print(f"Request received for alerts in state: {state}")  # Add logging
+
     url = f"{NWS_API_BASE}/alerts/active/area/{state}"
     data = await make_nws_request(url)
 
@@ -54,8 +56,16 @@ async def get_alerts(state: str) -> str:
     alerts = [format_alert(feature) for feature in data["features"]]
     return "\n---\n".join(alerts)
 
+@mcp.tool()
+def test_tool() -> str:
+    """Test tool to verify if stdio is working."""
+    return "Test tool is working."
 
 @mcp.resource("echo://{message}")
 def echo_resource(message: str) -> str:
-    """Echo a message as a resource"""
+    """Echo a message as a resource."""
     return f"Resource echo: {message}"
+
+if __name__ == "__main__":
+    print("running mcp server with stdio")
+    mcp.run(transport='stdio')

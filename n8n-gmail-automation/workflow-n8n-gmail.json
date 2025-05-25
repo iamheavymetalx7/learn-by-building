@@ -1,0 +1,270 @@
+{
+  "name": "My workflow - Gmail n8n Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "filters": {}
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.2,
+      "position": [220, 0],
+      "id": "8717169d-7860-49ab-825a-109a39810c14",
+      "name": "Gmail Trigger",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "nkmtMxUEUTs1cGBU",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [620, 180],
+      "id": "2216cdf7-3278-4bfd-8f8c-4b4d69da2418",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "XwwzvFMbSlOP2UNW",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "inputText": "={{ $json.snippet }}",
+        "categories": {
+          "categories": [
+            {
+              "category": "very-important",
+              "description": "- Emails in this category contain **critical and time-sensitive** content that demands **immediate attention or action**.\n\
+- These may involve **security alerts, deadlines, account access, financial transactions**, or other high-priority issues.\n\
+- Common indicators: OTPs (One-Time Passwords), password reset links, service suspension notices, account verification, or urgent work-related requests.\n\
+- Examples:\n\
+  • \"Your account has been accessed from a new device. Was this you?\"\n\
+  • \"Urgent: Submit your assignment by 5 PM today.\"\n\
+  • \"OTP for login: 438921. Do not share it with anyone.\"\n\
+  • \"Security Alert: Suspicious sign-in detected on your account.\""
+            },
+            {
+              "category": "spam-email",
+              "description": "- These emails are typically **irrelevant, unsolicited, or suspicious in nature**.\n\
+- They often contain **clickbait titles**, **excessive formatting**, or **attempts to deceive** the recipient.\n\
+- Common patterns include: misleading subject lines, exaggerated claims, poor grammar, and unknown senders.\n\
+- Examples:\n\
+  • \"Congratulations! You've won an iPhone. Claim now!\"\n\
+  • \"Act now! This investment opportunity will change your life.\"\n\
+  • \"This one trick can cure all your health problems!\"\n\
+  • \"Get rich working from home – no skills needed!\""
+            },
+            {
+              "category": "promotional",
+              "description": "- These emails aim to **sell, promote, or market** a product, service, or event.\n\
+- They are typically sent by companies, brands, or service providers to inform users about **offers, discounts, product launches**, or **subscriptions**.\n\
+- Keywords to look for: *offer*, *discount*, *limited time*, *buy now*, *subscribe*, *enroll*, *get access*, etc.\n\
+- Examples:\n\
+  • \"Exclusive 50% OFF on all summer wear – shop now!\"\n\
+  • \"Join our free webinar on AI for beginners. Register today.\"\n\
+  • \"Upgrade to Premium and get 3 months free.\"\n\
+  • \"Introducing our new product line – check it out today!\""
+            }
+          ]
+        },
+        "options": {
+          "fallback": "other"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.textClassifier",
+      "typeVersion": 1,
+      "position": [660, 0],
+      "id": "5f82a6e4-ee39-475f-900f-9babb836cbe5",
+      "name": "Text Classifier"
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Gmail Trigger').item.json.id }}",
+        "labelIds": ["Label_3498060932463659786"]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [1040, -180],
+      "id": "65f6a890-65fd-47f6-980f-ef0ee7079d29",
+      "name": "Gmail",
+      "webhookId": "65249e16-3986-4b22-b0ce-a898ed6be0af",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "nkmtMxUEUTs1cGBU",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Gmail Trigger').item.json.id }}",
+        "labelIds": ["Label_2640306878376173819"]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [1080, 220],
+      "id": "15109000-b14a-442d-8976-ee0acda38121",
+      "name": "Gmail1",
+      "webhookId": "6a8b81e6-a697-47a9-b68d-4ce15b152e4f",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "nkmtMxUEUTs1cGBU",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Gmail Trigger').item.json.id }}",
+        "labelIds": ["Label_2655010969124009730"]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [1280, 60],
+      "id": "989378e8-79f4-4ed6-b205-f6e6fe69e233",
+      "name": "Gmail2",
+      "webhookId": "c0488abd-e88e-47c5-95f0-bc8557e413bf",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "nkmtMxUEUTs1cGBU",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $('Gmail Trigger').item.json.id }}",
+        "labelIds": ["Label_4588138447503533670"]
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [1320, -100],
+      "id": "0066b1ca-06fb-4d15-b590-1f17737a75ed",
+      "name": "Gmail3",
+      "webhookId": "97e787c2-0f86-4b22-b974-e7272a1320dc",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "nkmtMxUEUTs1cGBU",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "nitishkumarmay30@gmail.com",
+        "subject": "=Re: {{ $('Gmail Trigger').item.json.Subject }} - email from nitish.iiserb@gmail.com",
+        "emailType": "text",
+        "message": "={{ $('Gmail Trigger').item.json.snippet }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [1400, -260],
+      "id": "f9dbaa57-77e6-4f09-a258-1d543a90831b",
+      "name": "Gmail4",
+      "webhookId": "f4a98f27-d74a-4c61-8018-75b5926a5faa",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "nkmtMxUEUTs1cGBU",
+          "name": "Gmail account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text Classifier": {
+      "main": [
+        [
+          {
+            "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Gmail3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Gmail2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Gmail1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail": {
+      "main": [
+        [
+          {
+            "node": "Gmail4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "a5177cf9-5303-4496-9b3a-e49af2ca59de",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "69a1f5ff7e448f6a2d87581d154c9a01fbfc102ea92dabf8b855af4726b9159b"
+  },
+  "id": "ENzTVxlAj8MmKEjs",
+  "tags": []
+}
